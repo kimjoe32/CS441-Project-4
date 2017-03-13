@@ -16,6 +16,8 @@
 		6C2E08E31E770DAC0061C81B /* GameView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C2E08E21E770DAC0061C81B /* GameView.m */; };
 		6C2E08E71E770E4D0061C81B /* Player.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C2E08E61E770E4D0061C81B /* Player.m */; };
 		6C2E08E91E770F230061C81B /* Brick.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C2E08E81E770F230061C81B /* Brick.m */; };
+		6C77ECC51E77614B002CE16E /* 2xSpeed.png in Resources */ = {isa = PBXBuildFile; fileRef = 6C77ECC41E77614B002CE16E /* 2xSpeed.png */; };
+		6C77ECC81E776216002CE16E /* halfSpeed.png in Resources */ = {isa = PBXBuildFile; fileRef = 6C77ECC71E776216002CE16E /* halfSpeed.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,6 +37,8 @@
 		6C2E08E61E770E4D0061C81B /* Player.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Player.m; sourceTree = "<group>"; };
 		6C2E08E81E770F230061C81B /* Brick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Brick.m; sourceTree = "<group>"; };
 		6C2E08EA1E771FFB0061C81B /* Brick.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Brick.h; sourceTree = "<group>"; };
+		6C77ECC41E77614B002CE16E /* 2xSpeed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 2xSpeed.png; sourceTree = "<group>"; };
+		6C77ECC71E776216002CE16E /* halfSpeed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = halfSpeed.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,6 +71,7 @@
 		6C2E08CA1E76F0EE0061C81B /* P04-Kim */ = {
 			isa = PBXGroup;
 			children = (
+				6C77ECC61E7761EF002CE16E /* Pictures */,
 				6C2E08CE1E76F0EE0061C81B /* AppDelegate.h */,
 				6C2E08CF1E76F0EE0061C81B /* AppDelegate.m */,
 				6C2E08D11E76F0EE0061C81B /* ViewController.h */,
@@ -92,6 +97,15 @@
 				6C2E08CC1E76F0EE0061C81B /* main.m */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		6C77ECC61E7761EF002CE16E /* Pictures */ = {
+			isa = PBXGroup;
+			children = (
+				6C77ECC41E77614B002CE16E /* 2xSpeed.png */,
+				6C77ECC71E776216002CE16E /* halfSpeed.png */,
+			);
+			name = Pictures;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -153,6 +167,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				6C2E08DB1E76F0EE0061C81B /* LaunchScreen.storyboard in Resources */,
+				6C77ECC81E776216002CE16E /* halfSpeed.png in Resources */,
+				6C77ECC51E77614B002CE16E /* 2xSpeed.png in Resources */,
 				6C2E08D81E76F0EE0061C81B /* Assets.xcassets in Resources */,
 				6C2E08D61E76F0EE0061C81B /* Main.storyboard in Resources */,
 			);

@@ -16,6 +16,7 @@
 @property (nonatomic, strong) Player *player;
 @property (nonatomic, strong) NSMutableArray *bricks;
 @property (nonatomic) float globalDy;
+@property (nonatomic, strong) UIImageView * powerUp;
 -(void)arrange:(CADisplayLink *)sender;
 
 @end

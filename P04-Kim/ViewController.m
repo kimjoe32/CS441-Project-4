@@ -10,7 +10,6 @@
 
 @interface ViewController ()
 @property (nonatomic, strong) CADisplayLink *displayLink;
-
 @end
 
 @implementation ViewController
@@ -20,7 +19,6 @@
     _displayLink = [CADisplayLink displayLinkWithTarget:_gameView selector:@selector(arrange:)];
     [_displayLink setPreferredFramesPerSecond:30];
     [_displayLink addToRunLoop:[NSRunLoop mainRunLoop] forMode:NSDefaultRunLoopMode];
-//    CGRect bounds = [[UIScreen mainScreen] bounds];
 }
 
 

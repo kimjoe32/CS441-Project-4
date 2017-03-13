@@ -8,4 +8,6 @@
 
 #import "Brick.h"
 @implementation Brick
+@synthesize dy;
+@synthesize moving;
 @end

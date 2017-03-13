@@ -14,7 +14,8 @@
     
 }
 @property (nonatomic, strong) Player *player;
-@property (nonatomic, strong) Brick *brick1, *brick2, *brick3,  *brick4, *brick5;
+@property (nonatomic, strong) NSMutableArray *bricks;
+@property (nonatomic) float globalDy;
 -(void)arrange:(CADisplayLink *)sender;
 
 @end

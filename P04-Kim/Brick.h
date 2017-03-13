@@ -9,4 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface Brick : UIView
+@property (nonatomic) float dy;
+@property (nonatomic) BOOL moving;
 @end

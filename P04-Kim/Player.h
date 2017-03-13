@@ -7,5 +7,5 @@
 //
 #import <UIKit/UIKit.h>
 @interface Player : UIView
-@property (nonatomic) float position, dx;
+@property (nonatomic) float position;
 @end

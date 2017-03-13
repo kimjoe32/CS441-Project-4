@@ -13,6 +13,9 @@
 		6C2E08D61E76F0EE0061C81B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6C2E08D41E76F0EE0061C81B /* Main.storyboard */; };
 		6C2E08D81E76F0EE0061C81B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6C2E08D71E76F0EE0061C81B /* Assets.xcassets */; };
 		6C2E08DB1E76F0EE0061C81B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6C2E08D91E76F0EE0061C81B /* LaunchScreen.storyboard */; };
+		6C2E08E31E770DAC0061C81B /* GameView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C2E08E21E770DAC0061C81B /* GameView.m */; };
+		6C2E08E71E770E4D0061C81B /* Player.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C2E08E61E770E4D0061C81B /* Player.m */; };
+		6C2E08E91E770F230061C81B /* Brick.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C2E08E81E770F230061C81B /* Brick.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +29,12 @@
 		6C2E08D71E76F0EE0061C81B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6C2E08DA1E76F0EE0061C81B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		6C2E08DC1E76F0EE0061C81B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6C2E08E21E770DAC0061C81B /* GameView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameView.m; sourceTree = "<group>"; };
+		6C2E08E41E770DB80061C81B /* GameView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GameView.h; sourceTree = "<group>"; };
+		6C2E08E51E770E460061C81B /* Player.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Player.h; sourceTree = "<group>"; };
+		6C2E08E61E770E4D0061C81B /* Player.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Player.m; sourceTree = "<group>"; };
+		6C2E08E81E770F230061C81B /* Brick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Brick.m; sourceTree = "<group>"; };
+		6C2E08EA1E771FFB0061C81B /* Brick.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Brick.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +71,12 @@
 				6C2E08CF1E76F0EE0061C81B /* AppDelegate.m */,
 				6C2E08D11E76F0EE0061C81B /* ViewController.h */,
 				6C2E08D21E76F0EE0061C81B /* ViewController.m */,
+				6C2E08E41E770DB80061C81B /* GameView.h */,
+				6C2E08E21E770DAC0061C81B /* GameView.m */,
+				6C2E08EA1E771FFB0061C81B /* Brick.h */,
+				6C2E08E81E770F230061C81B /* Brick.m */,
+				6C2E08E51E770E460061C81B /* Player.h */,
+				6C2E08E61E770E4D0061C81B /* Player.m */,
 				6C2E08D41E76F0EE0061C81B /* Main.storyboard */,
 				6C2E08D71E76F0EE0061C81B /* Assets.xcassets */,
 				6C2E08D91E76F0EE0061C81B /* LaunchScreen.storyboard */,
@@ -152,7 +167,10 @@
 			files = (
 				6C2E08D31E76F0EE0061C81B /* ViewController.m in Sources */,
 				6C2E08D01E76F0EE0061C81B /* AppDelegate.m in Sources */,
+				6C2E08E31E770DAC0061C81B /* GameView.m in Sources */,
+				6C2E08E91E770F230061C81B /* Brick.m in Sources */,
 				6C2E08CD1E76F0EE0061C81B /* main.m in Sources */,
+				6C2E08E71E770E4D0061C81B /* Player.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -307,6 +325,7 @@
 				6C2E08E11E76F0EE0061C81B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

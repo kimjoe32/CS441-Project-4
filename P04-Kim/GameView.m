@@ -14,14 +14,15 @@
 @synthesize powerUp;
 
 NSInteger currentScore,
-            powerUpCounter;
+            powerUpCounter,
+            powerUpType;
 BOOL gameOverHappened = FALSE;//so we don't get gameover twice
-BOOL powerUpAvailable = FALSE;//so we don't have more than 1 powerup on the screen
+BOOL powerUpSpawnable = TRUE;//so we don't have more than 1 powerup on the screen
 BOOL powerUpInAction = FALSE;
 
 -(id)initWithCoder:(NSCoder *)aDecoder
 {
-    [self setGlobalDy:6];
+    [self setGlobalDy:8];
     self = [super initWithCoder:aDecoder];
     if (self)
     {
@@ -36,6 +37,7 @@ BOOL powerUpInAction = FALSE;
         
         //powerup exists but not visible
         powerUp= [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"2xSpeed"]];
+        powerUpType =1;
         [self addSubview:powerUp];
         powerUp.alpha=0;
     }
@@ -67,17 +69,23 @@ BOOL powerUpInAction = FALSE;
     }
     
     //remove powerup if available
-    if (powerUpAvailable) {
+    if (!powerUpSpawnable) {
         [powerUp setAlpha:0];
-        powerUpAvailable=FALSE;
+        powerUpSpawnable=TRUE;
+    }
+    
+    if (powerUpInAction) {
+        powerUpInAction=FALSE;
+        [self setGlobalDy:8];
     }
 }
 
 -(void)arrange:(CADisplayLink *)sender{
-    powerUpCounter++; //30 frames/second, so 30*x == x seconds elapsed
+    powerUpCounter = (powerUpCounter+1)% 1000; //30 frames/second, so 30*x == x seconds elapsed
+    
     if (powerUpInAction && powerUpCounter > 90) {
         powerUpInAction= FALSE;
-        
+        [self setGlobalDy:8];
     }
     
     CGRect bounds = [self bounds];
@@ -100,29 +108,29 @@ BOOL powerUpInAction = FALSE;
     }
     
     //move powerup down if spawned
-    if (!powerUpAvailable) {
+    if (!powerUpSpawnable) {
         CGPoint newCenter = powerUp.center;
         newCenter.y += globalDy;
         powerUp.center=newCenter;
         //powerup reached bottom, remove it
         if (powerUp.center.y > bounds.size.height-10) {
-            powerUpAvailable=TRUE;
             [powerUp setAlpha:0];
         }
     }
     //1% chance of spawning a powerup
-    else if (arc4random()%100 == 0 && powerUpInAction) {
-        NSLog(@"powerupSpawned");
-        CGPoint newCenter = CGPointMake(rand()% (int)bounds.size.width,0);
+    else if (arc4random()%5 == 0 && !powerUpInAction) {
+        CGPoint newCenter = CGPointMake((rand()%5)*(int)bounds.size.width/5 -30,0);
         powerUp.center = newCenter;
         
         //choose powerup to display
         switch (arc4random()%2) {
             case 0:
+                powerUpType=1;
                 [powerUp setImage:[UIImage imageNamed:@"2xSpeed"]];
                 break;
                 
             case 1:
+                powerUpType=0;
                 [powerUp setImage:[UIImage imageNamed:@"halfSpeed"]];
                 break;
         }
@@ -130,7 +138,7 @@ BOOL powerUpInAction = FALSE;
         //[self addSubview:powerUp];
         [self bringSubviewToFront:powerUp];
         [powerUp setAlpha:1];
-        powerUpAvailable=FALSE;
+        powerUpSpawnable=FALSE;
     }
     
     //spawn bricks if brick not already moving
@@ -161,18 +169,19 @@ BOOL powerUpInAction = FALSE;
     }
     
     //check collision with powerup
-    if (powerUpAvailable && CGRectContainsPoint(powerUp.frame, [player center])) {
+    if (!powerUpSpawnable && CGRectContainsPoint(powerUp.frame, [player center])) {
         //get data to compare images
-        NSData *data1 = UIImagePNGRepresentation([UIImage imageNamed:@"2xSpeed.png"]);
-        NSData *data2 = UIImagePNGRepresentation([UIImage imageNamed:@"halfSpeed.png"]);
         
-        if (UIImagePNGRepresentation(powerUp.image) == data1){
+        if (powerUpType){
             //double speed
-            [self setGlobalDy:12];
-        } else if (UIImagePNGRepresentation(powerUp.image) == data2) {
-            [self setGlobalDy:3];
+            [self setGlobalDy:16];
+            
+        } else if (!powerUpType) {
+            //half speed
+            [self setGlobalDy:4];
         }
-        
+        [powerUp setAlpha:0];
+        powerUpSpawnable=TRUE;
         powerUpCounter = 0;
         powerUpInAction = TRUE;
     }

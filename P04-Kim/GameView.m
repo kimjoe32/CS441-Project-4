@@ -13,9 +13,11 @@
 @synthesize globalDy;
 @synthesize powerUp;
 
-NSInteger currentScore;
+NSInteger currentScore,
+            powerUpCounter;
 BOOL gameOverHappened = FALSE;//so we don't get gameover twice
 BOOL powerUpAvailable = FALSE;//so we don't have more than 1 powerup on the screen
+BOOL powerUpInAction = FALSE;
 
 -(id)initWithCoder:(NSCoder *)aDecoder
 {
@@ -28,7 +30,6 @@ BOOL powerUpAvailable = FALSE;//so we don't have more than 1 powerup on the scre
         //create player (copied from doodle jump code)
         player = [[Player alloc] initWithFrame:CGRectMake(bounds.size.width/2, bounds.size.height-50 , 20, 20)];
         [player setBackgroundColor:[UIColor redColor]];
-        [player setPosition:3];
         [self addSubview:player];
         
         [self setAndMakeBricks: bounds.size.width/5];
@@ -64,9 +65,21 @@ BOOL powerUpAvailable = FALSE;//so we don't have more than 1 powerup on the scre
         b.alpha = 0;
         [b setCenter:newCenter];
     }
+    
+    //remove powerup if available
+    if (powerUpAvailable) {
+        [powerUp setAlpha:0];
+        powerUpAvailable=FALSE;
+    }
 }
 
 -(void)arrange:(CADisplayLink *)sender{
+    powerUpCounter++; //30 frames/second, so 30*x == x seconds elapsed
+    if (powerUpInAction && powerUpCounter > 90) {
+        powerUpInAction= FALSE;
+        
+    }
+    
     CGRect bounds = [self bounds];
     
     //move bricks
@@ -98,7 +111,7 @@ BOOL powerUpAvailable = FALSE;//so we don't have more than 1 powerup on the scre
         }
     }
     //1% chance of spawning a powerup
-    else if (arc4random()%100 == 0) {
+    else if (arc4random()%100 == 0 && powerUpInAction) {
         NSLog(@"powerupSpawned");
         CGPoint newCenter = CGPointMake(rand()% (int)bounds.size.width,0);
         powerUp.center = newCenter;
@@ -132,7 +145,7 @@ BOOL powerUpAvailable = FALSE;//so we don't have more than 1 powerup on the scre
         }
     }
     
-    //check collisionw with bricks
+    //check collision with bricks
     for (Brick *brick in bricks)
     {
         CGRect b = [brick frame];
@@ -146,5 +159,44 @@ BOOL powerUpAvailable = FALSE;//so we don't have more than 1 powerup on the scre
             
         }
     }
+    
+    //check collision with powerup
+    if (powerUpAvailable && CGRectContainsPoint(powerUp.frame, [player center])) {
+        //get data to compare images
+        NSData *data1 = UIImagePNGRepresentation([UIImage imageNamed:@"2xSpeed.png"]);
+        NSData *data2 = UIImagePNGRepresentation([UIImage imageNamed:@"halfSpeed.png"]);
+        
+        if (UIImagePNGRepresentation(powerUp.image) == data1){
+            //double speed
+            [self setGlobalDy:12];
+        } else if (UIImagePNGRepresentation(powerUp.image) == data2) {
+            [self setGlobalDy:3];
+        }
+        
+        powerUpCounter = 0;
+        powerUpInAction = TRUE;
+    }
+}
+
+-(void)moveRight
+{
+    
+    CGRect bounds = [self bounds];
+    if (player.center.x >= (bounds.size.width) - (bounds.size.width/5)){
+        return;
+    }
+    CGPoint newCenter = player.center;
+    newCenter.x += (bounds.size.width/5);
+    player.center =newCenter;
+}
+-(void)moveLeft
+{
+    CGRect bounds = [self bounds];
+    if (player.center.x <=  (bounds.size.width/5)){
+        return;
+    }
+    CGPoint newCenter = player.center;
+    newCenter.x -= (bounds.size.width/5);
+    player.center =newCenter;
 }
 @end

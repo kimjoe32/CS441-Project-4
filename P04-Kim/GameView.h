@@ -18,5 +18,7 @@
 @property (nonatomic) float globalDy;
 @property (nonatomic, strong) UIImageView * powerUp;
 -(void)arrange:(CADisplayLink *)sender;
+-(void)moveRight;
+-(void)moveLeft;
 
 @end

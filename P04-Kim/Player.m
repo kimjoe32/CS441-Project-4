@@ -8,5 +8,4 @@
 
 #import "Player.h"
 @implementation Player
-@synthesize position;
 @end

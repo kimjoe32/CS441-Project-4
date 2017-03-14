@@ -26,4 +26,14 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+-(IBAction)moveRight:(id)sender
+{
+    [_gameView moveRight];
+}
+
+-(IBAction)moveLeft:(id)sender
+{
+    [_gameView moveLeft];
+}
 @end

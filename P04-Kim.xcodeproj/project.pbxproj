@@ -18,6 +18,8 @@
 		6C2E08E91E770F230061C81B /* Brick.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C2E08E81E770F230061C81B /* Brick.m */; };
 		6C77ECC51E77614B002CE16E /* 2xSpeed.png in Resources */ = {isa = PBXBuildFile; fileRef = 6C77ECC41E77614B002CE16E /* 2xSpeed.png */; };
 		6C77ECC81E776216002CE16E /* halfSpeed.png in Resources */ = {isa = PBXBuildFile; fileRef = 6C77ECC71E776216002CE16E /* halfSpeed.png */; };
+		6C77ECCA1E776F7C002CE16E /* RightArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 6C77ECC91E776F7C002CE16E /* RightArrow.png */; };
+		6C77ECCC1E777000002CE16E /* LeftArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 6C77ECCB1E777000002CE16E /* LeftArrow.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,6 +41,8 @@
 		6C2E08EA1E771FFB0061C81B /* Brick.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Brick.h; sourceTree = "<group>"; };
 		6C77ECC41E77614B002CE16E /* 2xSpeed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 2xSpeed.png; sourceTree = "<group>"; };
 		6C77ECC71E776216002CE16E /* halfSpeed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = halfSpeed.png; sourceTree = "<group>"; };
+		6C77ECC91E776F7C002CE16E /* RightArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = RightArrow.png; sourceTree = "<group>"; };
+		6C77ECCB1E777000002CE16E /* LeftArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LeftArrow.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +107,8 @@
 			isa = PBXGroup;
 			children = (
 				6C77ECC41E77614B002CE16E /* 2xSpeed.png */,
+				6C77ECC91E776F7C002CE16E /* RightArrow.png */,
+				6C77ECCB1E777000002CE16E /* LeftArrow.png */,
 				6C77ECC71E776216002CE16E /* halfSpeed.png */,
 			);
 			name = Pictures;
@@ -168,6 +174,8 @@
 			files = (
 				6C2E08DB1E76F0EE0061C81B /* LaunchScreen.storyboard in Resources */,
 				6C77ECC81E776216002CE16E /* halfSpeed.png in Resources */,
+				6C77ECCA1E776F7C002CE16E /* RightArrow.png in Resources */,
+				6C77ECCC1E777000002CE16E /* LeftArrow.png in Resources */,
 				6C77ECC51E77614B002CE16E /* 2xSpeed.png in Resources */,
 				6C2E08D81E76F0EE0061C81B /* Assets.xcassets in Resources */,
 				6C2E08D61E76F0EE0061C81B /* Main.storyboard in Resources */,

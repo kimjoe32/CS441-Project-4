@@ -6,6 +6,8 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -21,22 +23,47 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vqA-C1-5le" userLabel="Game View" customClass="GameView">
-                                <rect key="frame" x="0.0" y="28" width="414" height="586"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vqA-C1-5le" userLabel="Game View" customClass="GameView">
+                                <rect key="frame" x="0.0" y="20" width="414" height="594"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Score: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8tT-NP-Ai8">
+                                        <rect key="frame" x="8" y="0.0" width="63" height="40"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="63" id="jDi-KW-yzS"/>
+                                            <constraint firstAttribute="height" constant="40" id="llD-pn-L0G"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ujV-HB-duJ" userLabel="lbl">
+                                        <rect key="frame" x="79" y="0.0" width="110" height="40"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="110" id="Me4-78-R3y"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="8tT-NP-Ai8" firstAttribute="firstBaseline" secondItem="ujV-HB-duJ" secondAttribute="firstBaseline" id="1Az-dG-8ni"/>
+                                    <constraint firstItem="8tT-NP-Ai8" firstAttribute="top" secondItem="vqA-C1-5le" secondAttribute="top" id="Bns-WE-Ddv"/>
+                                    <constraint firstItem="ujV-HB-duJ" firstAttribute="leading" secondItem="8tT-NP-Ai8" secondAttribute="trailing" constant="8" symbolic="YES" id="EgS-wm-epx"/>
+                                    <constraint firstItem="8tT-NP-Ai8" firstAttribute="baseline" secondItem="ujV-HB-duJ" secondAttribute="baseline" id="biO-t9-Jrx"/>
+                                    <constraint firstItem="8tT-NP-Ai8" firstAttribute="leading" secondItem="vqA-C1-5le" secondAttribute="leadingMargin" id="vnA-Ed-4ge"/>
+                                </constraints>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mhl-Z8-Bhq" userLabel="Move Right">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mhl-Z8-Bhq" userLabel="Move Right">
                                 <rect key="frame" x="204" y="624" width="210" height="111"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="RightArrow.png"/>
                                 <connections>
                                     <action selector="moveRight:" destination="BYZ-38-t0r" eventType="touchUpInside" id="qKD-fW-KyX"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SYV-Tu-G48" userLabel="Move Left">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SYV-Tu-G48" userLabel="Move Left">
                                 <rect key="frame" x="0.0" y="624" width="210" height="111"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="LeftArrow.png"/>
                                 <connections>
                                     <action selector="moveLeft:" destination="BYZ-38-t0r" eventType="touchUpInside" id="wo4-XK-glE"/>
@@ -44,6 +71,16 @@
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="vqA-C1-5le" firstAttribute="trailing" secondItem="Mhl-Z8-Bhq" secondAttribute="trailing" id="39o-VG-nZQ"/>
+                            <constraint firstAttribute="trailing" secondItem="vqA-C1-5le" secondAttribute="trailing" id="3Ct-l9-hTT"/>
+                            <constraint firstItem="SYV-Tu-G48" firstAttribute="top" secondItem="vqA-C1-5le" secondAttribute="bottom" constant="10" id="3a7-r8-wz5"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="SYV-Tu-G48" secondAttribute="bottom" constant="1" id="8Dy-E1-L5y"/>
+                            <constraint firstItem="vqA-C1-5le" firstAttribute="leading" secondItem="Wso-3B-nna" secondAttribute="leading" id="9Sq-SB-OCH"/>
+                            <constraint firstItem="SYV-Tu-G48" firstAttribute="top" secondItem="Mhl-Z8-Bhq" secondAttribute="top" id="Mc0-qV-RuU"/>
+                            <constraint firstItem="vqA-C1-5le" firstAttribute="leading" secondItem="SYV-Tu-G48" secondAttribute="leading" id="anH-bj-DOo"/>
+                            <constraint firstItem="vqA-C1-5le" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="yiF-3Z-Dqf"/>
+                        </constraints>
                     </view>
                     <connections>
                         <outlet property="gameView" destination="vqA-C1-5le" id="u7I-zU-USr"/>

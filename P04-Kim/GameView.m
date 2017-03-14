@@ -13,7 +13,7 @@
 @synthesize globalDy;
 @synthesize powerUp;
 
-NSInteger currentScore,
+NSInteger currentScore = 0,
             powerUpCounter,
             powerUpType;
 BOOL gameOverHappened = FALSE;//so we don't get gameover twice
@@ -78,6 +78,18 @@ BOOL powerUpInAction = FALSE;
         powerUpInAction=FALSE;
         [self setGlobalDy:8];
     }
+    
+    //setscore to 0
+    for (UIView *i in self.subviews){
+        if([i isKindOfClass:[UILabel class]]){
+            UILabel * lbl = (UILabel*) i;
+            if([lbl.text isEqualToString:@"Score: "])//wrong label, skip
+                continue;
+            currentScore=0;
+            [lbl setText:[NSString stringWithFormat:@"%d", 0]];
+            break;
+        }
+    }
 }
 
 -(void)arrange:(CADisplayLink *)sender{
@@ -98,12 +110,36 @@ BOOL powerUpInAction = FALSE;
             newCenter.y += globalDy;
             b.center = newCenter;
         }
-        else {//brick reached bottom, send to top
+        else if (b.center.y > bounds.size.height-10){
+            //brick reached bottom, send to top
             b.alpha = 0;
-            newCenter.y = 20;
+            newCenter.y = 50;
             [b setDy:0];
             b.center = newCenter;
             [b setMoving:FALSE];
+        }
+    }
+    
+    //spawn bricks if brick not already moving
+    for (Brick *b in bricks) {
+        if (!b.moving){
+            if (arc4random() % 20 == 0) {
+                //5% chance of spawning a new brick
+                [b setMoving:TRUE];
+                [b setDy:(globalDy)];
+                b.alpha=1;
+                //new brick = +1 to score
+                for (UIView *i in self.subviews){
+                    if([i isKindOfClass:[UILabel class]]){
+                        UILabel * lbl = (UILabel*) i;
+                        if([lbl.text isEqualToString:@"Score: "])//wrong label, skip
+                            continue;
+                        currentScore++;
+                        [lbl setText:[NSString stringWithFormat:@"%ld", currentScore]];
+                        break;
+                    }
+                }
+            }
         }
     }
     
@@ -113,13 +149,14 @@ BOOL powerUpInAction = FALSE;
         newCenter.y += globalDy;
         powerUp.center=newCenter;
         //powerup reached bottom, remove it
+        
         if (powerUp.center.y > bounds.size.height-10) {
             [powerUp setAlpha:0];
         }
     }
-    //1% chance of spawning a powerup
-    else if (arc4random()%5 == 0 && !powerUpInAction) {
-        CGPoint newCenter = CGPointMake((rand()%5)*(int)bounds.size.width/5 -30,0);
+    //10% chance of spawning a powerup
+    else if (arc4random()%10 == 0 && !powerUpInAction) {
+        CGPoint newCenter = CGPointMake((rand()%5)*(int)bounds.size.width/5 -30,50);
         powerUp.center = newCenter;
         
         //choose powerup to display
@@ -139,18 +176,6 @@ BOOL powerUpInAction = FALSE;
         [self bringSubviewToFront:powerUp];
         [powerUp setAlpha:1];
         powerUpSpawnable=FALSE;
-    }
-    
-    //spawn bricks if brick not already moving
-    for (Brick *b in bricks) {
-        if (!b.moving){
-            if (arc4random() % 20 == 0) {
-                //5% chance of spawning a new brick
-                [b setMoving:TRUE];
-                [b setDy:(globalDy)];
-                b.alpha=1;
-            }
-        }
     }
     
     //check collision with bricks
